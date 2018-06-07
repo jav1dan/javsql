@@ -1,10 +1,6 @@
 <?
 Class JavSql{
-    /* This class is using for safe and easy connecting for MySQL 
-    Version: 0.1
-    Author: Javidan Sadygov
-    
-    */
+    /* Author: Javidan Sadygov */
 
     var $db_name; 
     var $db_server; 
@@ -31,7 +27,23 @@ Class JavSql{
     function setDBPassword($val){
         $this->db_password=$val;
     }
-    
+    function setDBParams($params){
+        if(array_key_exists('host',$params)){
+            $this->db_server=$params['host'];
+        }
+        if(array_key_exists('user',$params)){
+            $this->db_user=$params['user'];
+        }
+        if(array_key_exists('name',$params)){
+            $this->db_name=$params['name'];
+        }
+        if(array_key_exists('pass',$params)){
+            $this->db_password=$params['pass'];
+        }
+    }
+    function getDBPrefix(){
+        return $this->db_prefix;
+    }
     function Connect(){
         $this->mysqli=new mysqli($this->db_server,$this->db_user,$this->db_password,$this->db_name);
         if($this->mysqli->connect_errno){
