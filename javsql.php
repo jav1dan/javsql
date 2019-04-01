@@ -84,10 +84,10 @@ Class JavSql{
         if(!$this->is_connected){return false;}
         $tb_name=$this->db_prefix.$table_name;
         $sql="INSERT INTO `$tb_name` ";
-        $sql = " SET ";
+        $sql.= " SET ";
         $cnt=0;
-        foreach($variables as $vax){            
-            $sql.="`".$vax['column']."`='".$vax['value']."'";
+        foreach($variables as $vax=>$sx){
+            $sql.="`".$vax."`='".$sx."'";
             if($cnt!=count($variables)-1){
                 $sql.=",";
             }
